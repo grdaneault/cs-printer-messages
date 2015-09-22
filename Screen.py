@@ -30,9 +30,14 @@ class Screen():
                     if target is None:
                         print("To send:", to_send)
                     else:
-                        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                        s.connect((target, 9100))
-                        s.send(bytes(Screen.JOB % to_send, 'UTF-8'))
+                        try:
+                            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                            s.connect((target, 9100))
+                            s.send(bytes(Screen.JOB % to_send, 'UTF-8'))
+                        except socket.timeout:
+                            print("Error:  timeout when sending to %s." % target)
+                        except socket.error:
+                            print("Error:  could not connect to %s." % target)
             else:
                 print("Not resending.")
 
