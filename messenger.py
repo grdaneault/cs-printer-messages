@@ -10,6 +10,6 @@ seconds = 0
 while True:
     for message in config.get_messages():
         screen = message.screen()
-        screen.show(config.get_target_list())
+        screen.show(config.get_target_list(), verbose=config.is_verbose())
 
     config.update_config()

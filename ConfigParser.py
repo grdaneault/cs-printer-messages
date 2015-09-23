@@ -51,6 +51,9 @@ class ConfigParser:
 
             return self.messages
 
+    def is_verbose(self):
+        return "verbose" in self.config and self.config["verbose"]
+
 
 
 

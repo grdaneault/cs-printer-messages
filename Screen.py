@@ -2,6 +2,7 @@ import socket
 
 import time
 
+
 class Screen():
     __slots__ = ("lines", "max_duration", "animation_duration")
 
@@ -25,7 +26,7 @@ class Screen():
         self.max_duration = max_duration
         self.animation_duration = animation_duration
 
-    def show(self, targets):
+    def show(self, targets, verbose=False):
         """
         Sends the contents of the screen to the specified targets
 
@@ -51,7 +52,8 @@ class Screen():
                         except socket.error:
                             print("Error:  could not connect to %s." % target)
             else:
-                print("Not resending.")
+                if verbose:
+                    print("Not resending.")
 
             time.sleep(self.animation_duration)
             elapsed += self.animation_duration
