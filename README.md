@@ -1,4 +1,4 @@
-# Printer Messagenger
+# Printer Messenger
 A simple utility designed to display the list of current tutors in the tutoring center using 
 printer displays.
 
