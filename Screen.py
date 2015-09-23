@@ -13,12 +13,24 @@ class Screen():
 """
 
     def __init__(self, lines, max_duration=60, animation_duration=2):
+        """
+        Constructor.
+
+        :param lines:  List of lines of text to display on the screen.  Maximum length 4
+        :param max_duration:  The amount of time this message will be on screen
+        :param animation_duration:  The duration of any animation effect.
+        Essentially, how often the show command should be called on each line.
+        """
         self.lines = lines
         self.max_duration = max_duration
         self.animation_duration = animation_duration
 
-    def show(self, *targets):
+    def show(self, targets):
+        """
+        Sends the contents of the screen to the specified targets
 
+        :param targets:  List of targets to print to.  Include None to print locally to console.
+        """
         elapsed = 0
         last_sent = None
         while elapsed < self.max_duration:
@@ -45,6 +57,10 @@ class Screen():
             elapsed += self.animation_duration
 
     def get_message(self):
+        """
+        Gathers the messages from all lines
+        :return: The combined message, with no separator characters between lines.
+        """
         message = ""
         for line in self.lines:
             message += line.show()

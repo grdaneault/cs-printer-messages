@@ -18,9 +18,10 @@ class CurrentTutorProvider(MessageProvider):
         hour = now.hour
 
         lines = self.screen_lines_for_time(CurrentTutorProvider.DAYS[day], "%2d" % hour)
-        return Screen(lines, 10, 2)
+        return Screen(lines, self.duration, self.animation)
 
-    def __init__(self):
+    def __init__(self, duration=30, animation=2):
+        MessageProvider.__init__(self, duration, animation)
         self.tutors = {}
         self.update_tutor_list()
 

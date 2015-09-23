@@ -1,12 +1,15 @@
-from CurrentTutorProvider import CurrentTutorProvider
-from Line import Line
-from StaticMessageProvider import StaticMessageProvider
+#!/usr/bin/python3
 
-providers = [CurrentTutorProvider(), StaticMessageProvider("Welcome to the", "Tutoring Center!", center=True)]
+import sys
+from ConfigParser import ConfigParser
 
-last_sent = ''
+config_file = sys.argv[1] if len(sys.argv) >= 2 else "configuration.json"
+config = ConfigParser(config_file)
+
 seconds = 0
 while True:
-    for provider in providers:
-        screen = provider.screen()
-        screen.show(None)
+    for message in config.get_messages():
+        screen = message.screen()
+        screen.show(config.get_target_list())
+
+    config.update_config()
