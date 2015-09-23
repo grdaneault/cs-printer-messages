@@ -41,7 +41,7 @@ class Screen():
                 last_sent = to_send
                 for target in targets:
                     if target is None:
-                        print("To send:", to_send)
+                        print("Sent: '%s'" % to_send)
                     else:
                         try:
                             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
